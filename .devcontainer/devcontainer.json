@@ -1,0 +1,27 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.241.1/containers/ubuntu
+{
+	"name": "Airflow",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick an Ubuntu version: jammy / ubuntu-22.04, focal / ubuntu-20.04, bionic /ubuntu-18.04
+		// Use ubuntu-22.04 or ubuntu-18.04 on local arm64/Apple Silicon.
+	},
+	"mounts": [
+		"source=${localWorkspaceFolder},target=/home/airflow/dags,type=bind,consistency=cached",
+		"source=airflow-home,target=/home/airflow,type=volume"
+	],
+	"workspaceFolder": "/home/airflow/dags",
+	"containerEnv": {
+		"AIRFLOW_HOME": "/home/airflow/airflow_home",
+		"AIRFLOW__CORE__DAGS_FOLDER":"/home/airflow/dags",
+		"AIRFLOW__CORE__LOAD_EXAMPLES":"False",
+		"AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL":"30"
+	},
+	"updateRemoteUserUID": true,
+	"forwardPorts": [8080],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "/bin/bash .devcontainer/bootstrap.sh",
+	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "airflow", 
+}
