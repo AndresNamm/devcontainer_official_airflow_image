@@ -23,3 +23,6 @@ I have modified the .devcontainer folder so that Airflow starts up automatically
      + Airflow webserver is accessible on http://localhost:8080/
      + You can add dags to the root of this folder and they will be accessible in the UI in 30 seconds. 
      + Enjoy :)
+
+
+[Blog post that references this repo](https://www.dataleaper.com/post/airflow-local-development-environment-in-5-minutes)
